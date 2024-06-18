@@ -1,0 +1,477 @@
+
+<!-- saved from url=(0041)https://yaden2018.github.io/multispeaker/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>TTSSpeechBERT
+</title>
+    <link rel="shortcut icon" href="https://vancycici.github.io/fbdecode/img/ms.jpg">
+    <link rel="icon" href="https://vancycici.github.io/fbdecode/img/ms.jpg">
+    <link rel="apple-touch-icon" href="https://vancycici.github.io/fbdecode/img/ms.jpg">
+</head>
+<body>
+<script type="text/javascript" async="" src="./PROSODY PRE-TRAINING FOR IMPROVING EXPRESSIVENESS IN NEURAL TTS/analytics.js.download"></script><script async="" src="./PROSODY PRE-TRAINING FOR IMPROVING EXPRESSIVENESS IN NEURAL TTS/js"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-125850295-1');
+</script>
+
+<article>
+    <header>
+        <h1>MODELING PSEUDO-SPEAKER WITH UNCERTAINTY FOR SPEAKER ANONYMIZATION</h1>
+    </header>
+</article> 
+ 
+<div><b>Abstract:</b> This paper proposes to exploit the uncertainty estimate of the speaker attributes to anonymize speech utterances. The pseudo-speaker is assumed to follow a Gaussian distribution where the covariance measures the uncertainty of representing the speaker with the mean vector. Given the utterances of a selected cohort speaker set, the pseudo-speaker distribution is estimated by minimizing its divergence from the posterior speaker distributions estimated from the utterances. After that, a pseudo-speaker vector is generated via sampling to provide the pseudo-speaker representation to every single utterance. Our experiments carried out on the datasets provided by the VoicePrivacy Challenge (VPC) demonstrate that the proposed pseudo-speaker vector is effective in de-identification when applied in anonymization.
+</div> 
+
+<br/>
+<br/>
+<br/>
+
+<div>
+<table style="margin-right:0;"><tbody><tr>
+    <td colspan="3"><b><i>Anonymization samples: <i></i></b></td>
+</tr>
+<tr>
+    In the following, samples of four speakers are displayed, two from VCTK and two from LibriSpeech. For each speaker, a recording is presented for reference. Following that, the anonymized speech utterances generated with the baseline and our proposed method are given. As configured by VoicePrivacy Challenge, the speech utterances of an original speaker are anonymized with different cohort speakers when appearing in enrollment and trial. As such, for each speaker, the anonymized speech in enrollment and trial are presented, respectively.
+
+</tr>
+<tr>
+<td></td><td style="text-align:center"><b>Baseline</b></td>
+<td></td><td style="text-align:center"><b>Utterance</b></td>
+<td></td><td style="text-align:center"><b>Proposed</b></td>
+</tr>
+<!--<tr>-->
+<!--    <td></td><td></td><td style="text-align:center"> Enrollment </td><td style="text-align:center">Trial</td>-->
+<!--    <td style="text-align:center"> Enrollment </td><td style="text-align:center">Trial</td>-->
+<!--</tr>-->
+
+<tr>
+<td>p226_095_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p226_095_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p226_095_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p226_095_mic2.wav">
+    </audio>
+</td>
+</tr>
+
+<tr>
+<td>p226_115_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p226_115_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p226_115_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p226_115_mic2.wav">
+    </audio>
+</td>
+</tr>
+
+<tr>
+<td>p229_075_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p229_075_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p229_075_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p229_075_mic2.wav">
+    </audio>
+</td>
+</tr>
+
+<tr>
+<td>p229_197_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p229_197_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p229_197_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p229_197_mic2.wav">
+    </audio>
+</td>
+</tr>
+
+<tr>
+<td>p233_134_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p233_134_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p233_134_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p233_134_mic2.wav">
+    </audio>
+</td>
+</tr>
+
+<tr>
+<td>p233_262_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p233_262_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p233_262_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p233_262_mic2.wav">
+    </audio>
+</td>
+</tr>
+
+<tr>
+<td>p236_342_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p236_342_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p236_342_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p236_342_mic2.wav">
+    </audio>
+</td>
+</tr>
+
+<tr>
+<td>p243_145_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p243_145_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p243_145_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p243_145_mic2.wav">
+    </audio>
+</td>
+</tr>
+
+
+<tr>
+<td>p254_171_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p254_171_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p254_171_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p254_171_mic2.wav">
+    </audio>
+</td>
+</tr>
+
+<tr>
+<td>p254_251_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p254_251_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p254_251_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p254_251_mic2.wav">
+    </audio>
+</td>
+</tr>
+
+<tr>
+<td>p259_308_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p259_308_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p259_308_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p259_308_mic2.wav">
+    </audio>
+</td>
+</tr>
+<tr>
+<td>p267_301_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p267_301_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p267_301_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p267_301_mic2.wav">
+    </audio>
+</td>
+</tr>
+<tr>
+<td>p268_183_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p268_183_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p268_183_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p268_183_mic2.wav">
+    </audio>
+</td>
+</tr>
+<tr>
+<td>p268_263_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p268_263_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p268_263_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p268_263_mic2.wav">
+    </audio>
+</td>
+</tr>
+<tr>
+<td>p270_074_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p270_074_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p270_074_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p270_074_mic2.wav">
+    </audio>
+</td>
+</tr>
+<tr>
+<td>p270_330_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p270_330_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p270_330_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p270_330_mic2.wav">
+    </audio>
+</td>
+</tr>
+<tr>
+<td>p274_067_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p274_067_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p274_067_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p274_067_mic2.wav">
+    </audio>
+</td>
+</tr>
+<tr>
+<td>p274_357_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p274_357_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p274_357_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p274_357_mic2.wav">
+    </audio>
+</td>
+</tr>
+<tr>
+<td>p278_255_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p278_255_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p278_255_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p278_255_mic2.wav">
+    </audio>
+</td>
+</tr>
+<tr>
+<td>p286_468_mic2</td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/baseline/p286_468_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/utterance/p286_468_mic2.wav">
+    </audio>
+</td>
+    <td></td>
+<td style="width: 350px;text-align: center">
+    <audio controls="">
+        <source src="wav/proposed/p286_468_mic2.wav">
+    </audio>
+</td>
+</tr>
+
+
+
+</tbody>
+</table>
+
+<br/>
+<br/>
+
+</div>
+
+</body></html>
