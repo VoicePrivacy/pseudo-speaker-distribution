@@ -23,11 +23,11 @@
 
 <article>
     <header>
-        <h1>MODELING PSEUDO-SPEAKER WITH UNCERTAINTY FOR SPEAKER ANONYMIZATION</h1>
+        <h1>Pseudo-speaker Distribution Learning in Voice Anonymization</h1>
     </header>
 </article> 
  
-<div><b>Abstract:</b> This paper proposes to exploit the uncertainty estimate of the speaker attributes to anonymize speech utterances. The pseudo-speaker is assumed to follow a Gaussian distribution where the covariance measures the uncertainty of representing the speaker with the mean vector. Given the utterances of a selected cohort speaker set, the pseudo-speaker distribution is estimated by minimizing its divergence from the posterior speaker distributions estimated from the utterances. After that, a pseudo-speaker vector is generated via sampling to provide the pseudo-speaker representation to every single utterance. Our experiments carried out on the datasets provided by the VoicePrivacy Challenge (VPC) demonstrate that the proposed pseudo-speaker vector is effective in de-identification when applied in anonymization.
+<div><b>Abstract:</b> State-of-the-art framework for voice anonymization involves disentangling the speaker attributes from the original speech, substituting its representation with that of a pseudo-speaker, and generating the anonymized utterance. The generation of the pseudo-speaker representation typically involves two steps: selecting a cohort of speakers from a pre-defined speaker pool and then constructing the pseudo-speaker representation based on the selected cohort speakers. This paper focuses on pseudo-speaker modeling given the cohort speakers. In this regard, we propose to model the speaker attributes with a distribution instead of the conventional point estimate. Neural networks are utilized to learn pseudo-speaker distributions, leveraging the nonlinear speaker variations among the cohort speakers. Specifically, both utterances and frames are investigated as modeling units. Experiments were conducted on the LibriSpeech and VCTK datasets. The results demonstrated the efficacy of the proposed pseudo-speaker modeling method in improving voice protection performance, especially in increasing the voice distinctiveness among the anonymized utterances. Moreover, our results also show taht the pseudo-speaker model perform better when learnt from frame-level representation compared to the utterance-level counterpart.
 </div> 
 
 <br/>
